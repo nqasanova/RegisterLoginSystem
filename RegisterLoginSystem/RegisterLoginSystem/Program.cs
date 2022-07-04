@@ -114,25 +114,6 @@ namespace PersonManagement
             }
         }
 
-        class User : BaseValidator
-        {
-            public string FirstName { get; private set; } = "Super";
-            public string LastName { get; private set; } = "Admin";
-            public string Email { get; private set; } = "admin@gmail.com";
-            public string FirstPassword { get; private set; } = "123321";
-            public string SecondPassword { get; private set; } = "123321";
-
-            public User(string firstName, string lastName, string email, string firstPassword, string secondPassword)
-            {
-                FirstName = firstName;
-                LastName = lastName;
-                Email = email;
-                FirstPassword = firstPassword;
-                SecondPassword = secondPassword;
-            }
-
-        }
-
         class BaseValidator
         {
             public static bool Validator(User user, List<User> users)
@@ -212,6 +193,25 @@ namespace PersonManagement
                     return false;
                 }
             }
+        }
+
+        class User : BaseValidator
+        {
+            public string FirstName { get; private set; } = "Super";
+            public string LastName { get; private set; } = "Admin";
+            public string Email { get; private set; } = "admin@gmail.com";
+            public string FirstPassword { get; private set; } = "123321";
+            public string SecondPassword { get; private set; } = "123321";
+
+            public User(string firstName, string lastName, string email, string firstPassword, string secondPassword)
+            {
+                FirstName = firstName;
+                LastName = lastName;
+                Email = email;
+                FirstPassword = firstPassword;
+                SecondPassword = secondPassword;
+            }
+
         }
     }
 }
