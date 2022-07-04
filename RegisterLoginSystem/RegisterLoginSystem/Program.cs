@@ -12,6 +12,7 @@ namespace PersonManagement
             Console.WriteLine("Available commands in the system :");
             Console.WriteLine("/register");
             Console.WriteLine("/login");
+            Console.WriteLine("/exit");
 
             while (true)
             {
@@ -37,7 +38,18 @@ namespace PersonManagement
                     string secondPassword = Console.ReadLine();
 
                     RegisterUser(firstName, lastName, email, firstPassword, secondPassword);
-                    Console.WriteLine("You successfully registered, now you can login with your new account!");
+
+                    if (!IsEmailValid(email))
+                    {
+                        Console.WriteLine("You have entered wrong email!");
+                        continue;
+                    }
+
+                    else if (!IsPasswordValid(firstPassword, secondPassword))
+                    {
+                        Console.WriteLine("You have entered wrong password!");
+                        continue;
+                    }
                 }
 
                 else if (command == "/login")
@@ -67,6 +79,12 @@ namespace PersonManagement
                     {
                         Console.WriteLine("You successfully logged in!");
                     }
+                }
+
+                else if(command == "/exit")
+                {
+                    Console.WriteLine("Thank you for using our website!");
+                    break;
                 }
 
                 else
@@ -157,11 +175,11 @@ namespace PersonManagement
 
         class User
         {
-            public string FirstName { get; private set; }
-            public string LastName { get; private set; }
-            public string Email { get; private set; }
-            public string FirstPassword { get; private set; }
-            public string SecondPassword { get; private set; }
+            public string FirstName { get; private set; } = "Super";
+            public string LastName { get; private set; } = "Admin";
+            public string Email { get; private set; } = "admin@gmail.com";
+            public string FirstPassword { get; private set; } = "123321";
+            public string SecondPassword { get; private set; } = "123321";
 
             public User(string firstName, string lastName, string email, string firstPassword, string secondPassword)
             {
