@@ -116,6 +116,11 @@ namespace PersonManagement
 
         class IsTextLengthValid
         {
+            public bool User(User user, List<User> users)
+            {
+                return IsFirstNameValid(user.FirstName) && IsLastNameValid(user.LastName) && IsEmailValid(user.Email) && IsEmailUnique(user.Email, users) && IsPasswordValid(user.FirstName, user.SecondPassword);
+            }
+
             public static bool IsTextLengthCorrect(string text, int startLength, int endLength)
             {
                 if (!(text.Length > startLength && text.Length < endLength))
