@@ -73,7 +73,7 @@ namespace PersonManagement
         {
             User user = new User(firstName, lastName, email, firstPassword, secondPassword);
 
-            if (firstPassword == secondPassword)
+            if (user.IsRegistrationValid(user, users))
             {
                 users.Add(user);
                 Console.WriteLine("You successfully registered, now you can login with your new account!");
@@ -116,7 +116,7 @@ namespace PersonManagement
 
         class IsTextLengthValid
         {
-            public bool User(User user, List<User> users)
+            public bool IsRegistrationValid(User user, List<User> users)
             {
                 return IsFirstNameValid(user.FirstName) && IsLastNameValid(user.LastName) && IsEmailValid(user.Email) && IsEmailUnique(user.Email, users) && IsPasswordValid(user.FirstName, user.SecondPassword);
             }
@@ -131,11 +131,11 @@ namespace PersonManagement
                 return true;
             }
 
-            public static  bool TextValidator(List<string> texts, string text)
+            public static bool TextValidator(List<string> texts, string text)
             {
                 foreach (string user in texts)
                 {
-                    if(text == user)
+                    if (text == user)
                     {
                         return false;
                     }
