@@ -89,20 +89,17 @@ namespace PersonManagement
 
         public static bool LoginUser(string email, string firstpassword, string secondPassword)
         {
-            UserLoginValidation userLogin = new UserLoginValidation(email, firstpassword, secondPassword);
+            if (firstpassword == secondPassword)
             {
-                if (firstpassword == secondPassword)
-                {
-                    Console.WriteLine("You successfully logged in!");
-                    LoginConfirmation(email);
-                    return true;
-                }
+                Console.WriteLine("You successfully logged in!");
+                LoginConfirmation(email);
+                return true;
+            }
 
-                else
-                {
-                    Console.WriteLine("The information you have entered do not match the requirements, please try again.");
-                    return false;
-                }
+            else
+            {
+                Console.WriteLine("The information you have entered do not match the requirements, please try again.");
+                return false;
             }
         }
 
@@ -134,20 +131,6 @@ namespace PersonManagement
                 SecondPassword = secondPassword;
             }
 
-        }
-
-        class UserLoginValidation
-        {
-            public string Email { get; private set; }
-            public string FirstPassword { get; private set; }
-            public string SecondPassword { get; private set; }
-
-            public UserLoginValidation(string email, string firstPassword, string secondPassword)
-            {
-                Email = email;
-                FirstPassword = firstPassword;
-                SecondPassword = secondPassword;
-            }
         }
 
         class BaseValidator
