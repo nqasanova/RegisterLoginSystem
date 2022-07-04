@@ -114,11 +114,16 @@ namespace PersonManagement
             }
         }
 
-        class BaseValidator
+        class IsTextLengthValid
         {
-            public static bool Validator(User user, List<User> users)
+            public static bool IsTextLengthCorrect(string text, int startLength, int endLength)
             {
-                return IsFirstNameValid(user.FirstName) && IsLastNameValid(user.LastName) && IsEmailValid(user.Email) && /*IsEmailUnique(user.Email, users) &&*/ IsPasswordValid(user.FirstPassword, user.SecondPassword);
+                if (!(text.Length > startLength && text.Length < endLength))
+                {
+                    return false;
+                }
+
+                return true;
             }
 
             public static bool IsFirstNameValid(string FirstName)
@@ -137,15 +142,6 @@ namespace PersonManagement
                 if (!IsTextLengthCorrect(lastName, 5, 20))
                 {
                     Console.WriteLine("Entered last name does not match the requirements!");
-                    return false;
-                }
-
-                return true;
-            }
-            public static bool IsTextLengthCorrect(string text, int startLength, int endLength)
-            {
-                if (!(text.Length > startLength && text.Length < endLength))
-                {
                     return false;
                 }
 
@@ -195,7 +191,7 @@ namespace PersonManagement
             }
         }
 
-        class User : BaseValidator
+        class User : IsTextLengthValid
         {
             public string FirstName { get; private set; } = "Super";
             public string LastName { get; private set; } = "Admin";
