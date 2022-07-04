@@ -126,6 +126,19 @@ namespace PersonManagement
                 return true;
             }
 
+            public static  bool TextValidator(List<string> texts, string text)
+            {
+                foreach (string user in texts)
+                {
+                    if(text == user)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
             public static bool IsFirstNameValid(string FirstName)
             {
                 if (!IsTextLengthCorrect(FirstName, 3, 30))
@@ -162,19 +175,26 @@ namespace PersonManagement
                 return false;
             }
 
-            /*public static bool IsEmailUnique(string email, List<User> users)
+            public static bool IsEmailUnique(string email, List<User> users)
             {
-                for (int i = 0; i < users.Count; i++)
-                {
-                    if (users[i].Email == email)
-                    {
-                        Console.WriteLine("This email has already been registered, try to register with another email!");
-                        return false;
-                    }
+                List<string> registeredEmails = new List<string>();
 
+                foreach (User user in users)
+                {
+                    registeredEmails.Add(user.Email);
+                }
+
+                if (TextValidator(registeredEmails, email))
+                {
                     return true;
                 }
-            }*/
+
+                else
+                {
+                    Console.WriteLine("This email has already been registered, try to register with another email!");
+                    return false;
+                }
+            }
 
             public static bool IsPasswordValid(string firstPassword, string secondPassword)
             {
